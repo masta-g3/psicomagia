@@ -54,8 +54,8 @@ def parse_response(response):
 
 def main():
     st.image("terapia-psicomagica.gif")
-    registro = st.text_area("Entrada", label_visibility="collapsed", help="En qué te puedo ayudar?")
     if not st.session_state.queried:
+        registro = st.text_area("Entrada", label_visibility="collapsed", help="En qué te puedo ayudar?")
         image_html = '<a href="#" id="Image 1"><img src="https://github.com/masta-g3/assets/blob/main/ask.png?raw=true" alt="Qué te acongoja?"></a>'
         clicked = click_detector(image_html)
 
