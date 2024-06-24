@@ -12,6 +12,8 @@ if "reflexion" not in st.session_state:
 if "terapia" not in st.session_state:
     st.session_state.terapia = ""
 
+st.set_page_config(page_title="Psicomagia", page_icon="🔮")
+
 with open("style.css") as css:
     st.markdown(f"<style>{css.read()}</style>", unsafe_allow_html=True)
 
