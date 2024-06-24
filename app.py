@@ -65,10 +65,16 @@ def main():
             with st.spinner("Consultando al psicomago..."):
                 prompt = prompt_template.replace("{registro}", registro)
                 payload["prompt"] = prompt
-                response = requests.request(
-                    "POST", url, headers=headers, data=json.dumps(payload)
-                )
-                reflexion, terapia = parse_response(response)
+                try:
+                    response = requests.request(
+                        "POST", url, headers=headers, data=json.dumps(payload)
+                    )
+                    reflexion, terapia = parse_response(response)
+                except Exception as e:
+                    response = requests.request(
+                        "POST", url, headers=headers, data=json.dumps(payload)
+                    )
+                    reflexion, terapia = parse_response(response)
                 st.session_state.reflexion = reflexion
                 st.session_state.terapia = terapia
                 st.session_state.queried = True
@@ -81,4 +87,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        st.error("Algo salió mal. Por favor refresca la página.")
